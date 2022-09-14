@@ -17,5 +17,5 @@ jobs:
    - name: Build Docker image
      run: |
        docker build -t trainingapp .
-       docker tag app divyanshsama/trainingapp
+       docker tag trainingapp divyanshsama/trainingapp
        docker push divyanshsama/trainingapp
