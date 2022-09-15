@@ -1,7 +1,14 @@
-from flask import Flask
+from flask import Flask, render_template, redirect
+
 app = Flask(__name__)
-@app.route("/")
-def hello_world():
-    return "<h2> This is the first web app by Divyansh Malhotra with CI</h2>"
+app.config.update(
+    TESTING = True,
+    SECRET_KEY = 'ops_digital_assets'
+)
+
+@app.route("/", methods = ['GET','POST'])
+def login():
+    user = {'name':'Divyansh'}
+    return render_template('index.html', user = user)
 if __name__ == "__main__":
     app.run(host = "0.0.0.0")
