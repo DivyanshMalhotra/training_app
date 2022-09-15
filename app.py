@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect
+from flask import Flask, render_template, redirect, request
 
 app = Flask(__name__)
 app.config.update(
@@ -7,8 +7,15 @@ app.config.update(
 )
 
 @app.route("/", methods = ['GET','POST'])
-def login():
+def index():
     user = {'name':'Divyansh'}
     return render_template('index.html', user = user)
+
+@app.route("/login", methods = ['GET','POST'])
+def login():
+    if((request.values['email']=='divyansh.sgs@gmail.com')&(request.values['pwd']=='admin')):
+        return render_template('dashboard.html')
+    else:
+        return '<h1>Invalid User</h1>'
 if __name__ == "__main__":
     app.run(host = "0.0.0.0")
